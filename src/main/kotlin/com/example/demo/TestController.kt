@@ -26,7 +26,7 @@ class TestController(
         "/stream",
         produces = [MediaType.TEXT_EVENT_STREAM_VALUE]
     )
-    fun getStream(): Flux<String> {
+    fun getStream(): Flux<ServerSentEvent<String>> {
         AppLogger.info(TAG, "getStream")
         return testService.getStream()
     }

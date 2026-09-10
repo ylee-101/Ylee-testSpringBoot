@@ -4,6 +4,8 @@ import com.example.demo.common.AppLogger
 import org.springframework.http.codec.ServerSentEvent
 import org.springframework.stereotype.Service
 import reactor.core.publisher.Flux
+import java.time.Duration
+import java.util.concurrent.TimeoutException
 
 @Service
 class TestService(
@@ -18,13 +20,17 @@ class TestService(
         return testRepository.getHello()
     }
 
-    fun getStream() : Flux<String> {
+    fun getStream() : Flux<ServerSentEvent<String>> {
         AppLogger.info(TAG, "getStream")
         return testClient.getStream()
-            .map { event ->
-//                println("event : ${event.event()}, data: ${event.data()}")
-                event.data()?:"null"
+            .timeout(Duration.ofSeconds(15L))
+            .onErrorResume(TimeoutException::class.java) {
+                Flux.just(
+                    ServerSentEvent.builder<String>()
+                        .event("error")
+                        .data("15초동안 데이터가 들어오지않음")
+                        .build()
+                )
             }
     }
-
 }
