@@ -1,6 +1,7 @@
 package com.example.demo
 
 import com.example.demo.common.AppLogger
+import org.springframework.core.io.buffer.DataBuffer
 import org.springframework.http.codec.ServerSentEvent
 import org.springframework.stereotype.Service
 import reactor.core.publisher.Flux
@@ -18,13 +19,9 @@ class TestService(
         return testRepository.getHello()
     }
 
-    fun getStream() : Flux<String> {
+    fun getStream() : Flux<DataBuffer> {
         AppLogger.info(TAG, "getStream")
         return testClient.getStream()
-            .map { event ->
-//                println("event : ${event.event()}, data: ${event.data()}")
-                event.data()?:"null"
-            }
     }
 
 }

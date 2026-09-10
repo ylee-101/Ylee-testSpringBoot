@@ -1,6 +1,7 @@
 package com.example.demo
 
 import com.example.demo.common.AppLogger
+import org.springframework.core.io.buffer.DataBuffer
 import org.springframework.http.MediaType
 import org.springframework.http.codec.ServerSentEvent
 import org.springframework.web.bind.annotation.GetMapping
@@ -26,7 +27,7 @@ class TestController(
         "/stream",
         produces = [MediaType.TEXT_EVENT_STREAM_VALUE]
     )
-    fun getStream(): Flux<String> {
+    fun getStream(): Flux<DataBuffer> {
         AppLogger.info(TAG, "getStream")
         return testService.getStream()
     }
