@@ -25,49 +25,9 @@ class TestService(
         return testRepository.getHello()
     }
 
-    fun getStream(): Flux<ServerSentEvent<String>> = Flux.defer {
-        val hasEmittedEvent = AtomicBoolean(false)
-
+    fun getStream(): Flux<ServerSentEvent<String>> {
         AppLogger.info(TAG, "getStream")
-        testClient.getStream()
+        return testClient.getStream()
             .timeout(upstreamTimeout)
-            .doOnNext { hasEmittedEvent.set(true) }
-            .doOnError { error ->
-                AppLogger.warn(TAG, "upstream stream failed: ${error.javaClass.simpleName}")
-            }
-            .onErrorResume { error ->
-                if (hasEmittedEvent.get()) {
-                    Flux.just(errorEvent(error))
-                } else {
-                    Flux.error(toHttpError(error))
-                }
-            }
-    }
-
-    private fun errorEvent(error: Throwable): ServerSentEvent<String> {
-        val code = if (error is TimeoutException) "UPSTREAM_TIMEOUT" else "UPSTREAM_ERROR"
-        return ServerSentEvent.builder<String>()
-            .event("error")
-            .data(code)
-            .build()
-    }
-
-    private fun toHttpError(error: Throwable): ResponseStatusException = when (error) {
-        is ResponseStatusException -> error
-        is TimeoutException -> ResponseStatusException(
-            HttpStatus.GATEWAY_TIMEOUT,
-            "Upstream response timed out",
-            error
-        )
-        is WebClientResponseException -> ResponseStatusException(
-            HttpStatus.BAD_GATEWAY,
-            "Upstream server returned ${error.statusCode.value()}",
-            error
-        )
-        else -> ResponseStatusException(
-            HttpStatus.BAD_GATEWAY,
-            "Upstream request failed",
-            error
-        )
     }
 }
