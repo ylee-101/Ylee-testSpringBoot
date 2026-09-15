@@ -12,6 +12,7 @@ class TestExcptionHandler {
 
     private val TAG = "TestWebClientExcptionHandler"
 
+    // cliend에서 4xx, 5xx 응답이 retrieve 된 경우 여기로 에러 처리 들어옴
     @ExceptionHandler(WebClientResponseException::class)
     fun handleError(e: WebClientResponseException): ResponseEntity<String> {
         AppLogger.error(TAG, "error with ${e.cause}")
