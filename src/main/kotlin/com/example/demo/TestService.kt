@@ -1,6 +1,7 @@
 package com.example.demo
 
 import com.example.demo.common.AppLogger
+import com.example.demo.config.ExternalApiProperties
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
@@ -17,11 +18,12 @@ import java.util.concurrent.atomic.AtomicBoolean
 @Service
 class TestService(
     private val testRepository: TestRepository,
-    private val testClient : TestClient
+    private val testClient : TestClient,
+    private val externalApiProperties: ExternalApiProperties
 ) {
 
     private val TAG = "TestService"
-    private val upstreamTimeout = Duration.ofSeconds(15)
+    private val upstreamTimeout = externalApiProperties.responseTimeout
 
     fun getHello(): String {
         AppLogger.info(TAG, "getHello")
@@ -37,7 +39,17 @@ class TestService(
                 }
                 ResponseEntity.status(upstream.statusCode)
                     .contentType(MediaType.TEXT_EVENT_STREAM)
-                    .body(body.timeout(upstreamTimeout))
+                    .body(
+                        body.timeout(upstreamTimeout)
+                            .onErrorResume(TimeoutException::class.java) {
+                                Flux.just(
+                                    ServerSentEvent.builder<String>()
+                                        .event("done with error")
+                                        .data("""{"error": "응답 시간이 초과되었습니다"}""")
+                                        .build()
+                                )
+                            }
+                    )
             }
     }
 }
