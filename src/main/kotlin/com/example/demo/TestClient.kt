@@ -1,6 +1,7 @@
 package com.example.demo
 
 import com.example.demo.common.AppLogger
+import com.example.demo.config.ExternalApiProperties
 import org.springframework.core.ParameterizedTypeReference
 import org.springframework.http.ResponseEntity
 import org.springframework.http.codec.ServerSentEvent
@@ -10,11 +11,13 @@ import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 
 @Component
-class TestClient {
+class TestClient(
+    private val externalApiProperties: ExternalApiProperties
+) {
     private val TAG = "TestClient"
 
     private val testWebClient : WebClient = WebClient.builder()
-        .baseUrl("http://localhost:9090")
+        .baseUrl(externalApiProperties.baseUrl)
         .build()
 
     fun getStream(): Mono<ResponseEntity<Flux<ServerSentEvent<String>>>> {
