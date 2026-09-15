@@ -24,7 +24,11 @@ class TestClient(
         AppLogger.info(TAG, "requesting upstream stream")
 
         return testWebClient.get()
-            .uri("/mock/stream?scenario=accepted-queue")
+            .uri { builder ->
+                builder.path(externalApiProperties.streamPath)
+                    .queryParam("scenario", externalApiProperties.scenario)
+                    .build()
+            }
             .retrieve()
             .toEntityFlux(
                 object : ParameterizedTypeReference<ServerSentEvent<String>>() {}
