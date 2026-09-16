@@ -14,6 +14,7 @@ import java.util.concurrent.TimeoutException
 class TestService(
     private val testRepository: TestRepository,
     private val sseApiClient : SseApiClient,
+    private val jsonAPiClient: JsonAPiClient,
     private val externalApiProperties: ExternalApiProperties
 ) {
 
@@ -47,4 +48,10 @@ class TestService(
                     )
             }
     }
+
+    fun getJson() : Mono<ResponseEntity<MockJsonResponse>> {
+        AppLogger.info(TAG, "getJson")
+        return jsonAPiClient.getJson()
+    }
+
 }
