@@ -11,10 +11,10 @@ import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 
 @Component
-class TestClient(
+class SseApiClient(
     private val externalApiProperties: ExternalApiProperties
 ) {
-    private val TAG = "TestClient"
+    private val TAG = "SseApiClient"
 
     private val sseApiWebClient : WebClient = WebClient.builder()
         .baseUrl(externalApiProperties.ssePort.baseUrl)

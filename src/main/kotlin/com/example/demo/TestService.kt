@@ -13,7 +13,7 @@ import java.util.concurrent.TimeoutException
 @Service
 class TestService(
     private val testRepository: TestRepository,
-    private val sseApiClient : TestClient,
+    private val sseApiClient : SseApiClient,
     private val externalApiProperties: ExternalApiProperties
 ) {
 
