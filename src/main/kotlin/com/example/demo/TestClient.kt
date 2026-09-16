@@ -16,17 +16,17 @@ class TestClient(
 ) {
     private val TAG = "TestClient"
 
-    private val testWebClient : WebClient = WebClient.builder()
-        .baseUrl(externalApiProperties.baseUrl)
+    private val sseApiWebClient : WebClient = WebClient.builder()
+        .baseUrl(externalApiProperties.ssePort.baseUrl)
         .build()
 
     fun getStream(): Mono<ResponseEntity<Flux<ServerSentEvent<String>>>> {
         AppLogger.info(TAG, "requesting upstream stream")
 
-        return testWebClient.get()
+        return sseApiWebClient.get()
             .uri { builder ->
-                builder.path(externalApiProperties.streamPath)
-                    .queryParam("scenario", externalApiProperties.scenario)
+                builder.path(externalApiProperties.ssePort.path)
+                    .queryParam("scenario", externalApiProperties.ssePort.scenario)
                     .build()
             }
             .retrieve()

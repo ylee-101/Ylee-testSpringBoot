@@ -5,8 +5,18 @@ import java.time.Duration
 
 @ConfigurationProperties(prefix = "external-api")
 data class ExternalApiProperties(
+    val ssePort: SsePortProperties,
+    val jsonPort: JsonPortProperties
+)
+
+data class SsePortProperties(
     val baseUrl: String,
-    val streamPath: String,
+    val path: String,
     val scenario: String,
     val responseTimeout: Duration
+)
+
+data class JsonPortProperties(
+    val baseUrl: String,
+    val path: String
 )
