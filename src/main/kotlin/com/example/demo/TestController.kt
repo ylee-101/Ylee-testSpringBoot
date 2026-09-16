@@ -33,5 +33,13 @@ class TestController(
         return testService.getStream()
     }
 
+    @GetMapping(
+        "/json",
+        produces = [MediaType.APPLICATION_JSON_VALUE]
+    )
+    fun getJson(): Mono<ResponseEntity<MockJsonResponse>> {
+        AppLogger.info(TAG, "getJson")
+        return testService.getJson()
+    }
 
 }
