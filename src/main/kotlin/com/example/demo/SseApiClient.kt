@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity
 import org.springframework.http.codec.ServerSentEvent
 import org.springframework.stereotype.Component
 import org.springframework.web.reactive.function.client.WebClient
+import org.springframework.web.reactive.function.client.WebClientResponseException
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 
@@ -33,5 +34,13 @@ class SseApiClient(
             .toEntityFlux(
                 object : ParameterizedTypeReference<ServerSentEvent<String>>() {}
             )
+            .onErrorMap(WebClientResponseException::class.java) { exception ->
+                ExternalApiHttpException(
+                    apiId = ExternalApiId.SSE_API,
+                    status = exception.statusCode,
+                    body = exception.responseBodyAsString,
+                    cause = exception
+                )
+            }
     }
 }

@@ -18,5 +18,6 @@ data class SsePortProperties(
 
 data class JsonPortProperties(
     val baseUrl: String,
-    val path: String
+    val path: String,
+    val scenario: String
 )
