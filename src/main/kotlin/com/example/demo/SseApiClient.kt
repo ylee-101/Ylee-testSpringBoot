@@ -3,13 +3,18 @@ package com.example.demo
 import com.example.demo.common.AppLogger
 import com.example.demo.config.ExternalApiProperties
 import org.springframework.core.ParameterizedTypeReference
+import org.springframework.http.HttpHeaders
+import org.springframework.http.HttpMethod
 import org.springframework.http.ResponseEntity
 import org.springframework.http.codec.ServerSentEvent
 import org.springframework.stereotype.Component
 import org.springframework.web.reactive.function.client.WebClient
+import org.springframework.web.reactive.function.client.WebClientRequestException
 import org.springframework.web.reactive.function.client.WebClientResponseException
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
+import java.net.URI
+import java.util.concurrent.TimeoutException
 
 @Component
 class SseApiClient(
@@ -41,6 +46,13 @@ class SseApiClient(
                     body = exception.responseBodyAsString,
                     cause = exception
                 )
+            }
+            .onErrorMap(WebClientRequestException::class.java) { exception ->
+                ExternalApiConnectException(
+                    apiId = ExternalApiId.SSE_API,
+                    cause = exception
+                )
+
             }
     }
 }

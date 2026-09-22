@@ -9,21 +9,35 @@ enum class ExternalApiId {
 
 abstract class ExternalApiException(
     val apiId: ExternalApiId,
-    val status : HttpStatusCode,
-    val body : String,
     message: String,
     cause: Throwable? = null
 ) : RuntimeException(message, cause)
 
 class ExternalApiHttpException(
     apiId: ExternalApiId,
-    status: HttpStatusCode,
-    body: String,
+    val status: HttpStatusCode,
+    val body: String,
     cause: Throwable
 ): ExternalApiException(
     apiId = apiId,
-    status = status,
-    body = body,
     message = "sse error : ${status.value()}",
+    cause = cause
+)
+
+class ExternalApiConnectException(
+    apiId: ExternalApiId,
+    cause: Throwable
+): ExternalApiException(
+    apiId = apiId,
+    message = "Connect error : ${cause.message}",
+    cause = cause
+)
+
+class ExternalApiTimeoutException(
+    apiId: ExternalApiId,
+    cause: Throwable
+): ExternalApiException(
+    apiId = apiId,
+    message = "Timeout error : ${cause.message}",
     cause = cause
 )

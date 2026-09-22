@@ -8,10 +8,12 @@ import org.springframework.http.ResponseEntity
 import org.springframework.http.codec.ServerSentEvent
 import org.springframework.stereotype.Component
 import org.springframework.web.reactive.function.client.WebClient
+import org.springframework.web.reactive.function.client.WebClientRequestException
 import org.springframework.web.reactive.function.client.WebClientResponseException
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 import tools.jackson.databind.JsonNode
+import java.util.concurrent.TimeoutException
 
 @Component
 class JsonAPiClient(
@@ -41,6 +43,20 @@ class JsonAPiClient(
                     body = exception.responseBodyAsString,
                     cause = exception
                 )
+            }
+            .onErrorMap(WebClientRequestException::class.java) { exception ->
+                ExternalApiConnectException(
+                    apiId = ExternalApiId.JSON_API,
+                    cause = exception
+                )
+
+            }
+            .onErrorMap(TimeoutException::class.java) { exception ->
+                ExternalApiTimeoutException(
+                    apiId = ExternalApiId.JSON_API,
+                    cause = exception
+                )
+
             }
     }
 }
