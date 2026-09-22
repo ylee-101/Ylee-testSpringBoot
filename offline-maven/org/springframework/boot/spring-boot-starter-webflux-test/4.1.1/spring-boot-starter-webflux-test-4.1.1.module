@@ -1,0 +1,188 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "org.springframework.boot",
+    "module": "spring-boot-starter-webflux-test",
+    "version": "4.1.1",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.7.0"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 17,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "org.springframework.boot",
+          "module": "spring-boot-starter-jackson-test",
+          "version": {
+            "requires": "4.1.1"
+          }
+        },
+        {
+          "group": "org.springframework.boot",
+          "module": "spring-boot-starter-test",
+          "version": {
+            "requires": "4.1.1"
+          }
+        },
+        {
+          "group": "org.springframework.boot",
+          "module": "spring-boot-starter-webflux",
+          "version": {
+            "requires": "4.1.1"
+          }
+        },
+        {
+          "group": "org.springframework.boot",
+          "module": "spring-boot-webflux-test",
+          "version": {
+            "requires": "4.1.1"
+          }
+        },
+        {
+          "group": "org.springframework.boot",
+          "module": "spring-boot-webtestclient",
+          "version": {
+            "requires": "4.1.1"
+          }
+        },
+        {
+          "group": "io.projectreactor",
+          "module": "reactor-test",
+          "version": {
+            "requires": "3.8.7"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "spring-boot-starter-webflux-test-4.1.1.jar",
+          "url": "spring-boot-starter-webflux-test-4.1.1.jar",
+          "size": 4762,
+          "sha512": "4e3df2b47562d2681e7fa9a5d2c18c7143395f8765d28844c02aa9a90ea5031b6c339cfa7d1afba4eb58f6b41d9dd46567079fc2cc1dff3974f4b28b07b9818d",
+          "sha256": "702ace83457bb7ee7f012715f1d44f695bf865aa7c5ded7d02bf608ec21a6999",
+          "sha1": "a937f827a86303c9e1e1cd5114b8ad874590b3d6",
+          "md5": "3dcefbc65dd7d053b0ef189ad1d963ae"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 17,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "org.springframework.boot",
+          "module": "spring-boot-starter-jackson-test",
+          "version": {
+            "requires": "4.1.1"
+          }
+        },
+        {
+          "group": "org.springframework.boot",
+          "module": "spring-boot-starter-test",
+          "version": {
+            "requires": "4.1.1"
+          }
+        },
+        {
+          "group": "org.springframework.boot",
+          "module": "spring-boot-starter-webflux",
+          "version": {
+            "requires": "4.1.1"
+          }
+        },
+        {
+          "group": "org.springframework.boot",
+          "module": "spring-boot-webflux-test",
+          "version": {
+            "requires": "4.1.1"
+          }
+        },
+        {
+          "group": "org.springframework.boot",
+          "module": "spring-boot-webtestclient",
+          "version": {
+            "requires": "4.1.1"
+          }
+        },
+        {
+          "group": "io.projectreactor",
+          "module": "reactor-test",
+          "version": {
+            "requires": "3.8.7"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "spring-boot-starter-webflux-test-4.1.1.jar",
+          "url": "spring-boot-starter-webflux-test-4.1.1.jar",
+          "size": 4762,
+          "sha512": "4e3df2b47562d2681e7fa9a5d2c18c7143395f8765d28844c02aa9a90ea5031b6c339cfa7d1afba4eb58f6b41d9dd46567079fc2cc1dff3974f4b28b07b9818d",
+          "sha256": "702ace83457bb7ee7f012715f1d44f695bf865aa7c5ded7d02bf608ec21a6999",
+          "sha1": "a937f827a86303c9e1e1cd5114b8ad874590b3d6",
+          "md5": "3dcefbc65dd7d053b0ef189ad1d963ae"
+        }
+      ]
+    },
+    {
+      "name": "javadocElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "javadoc",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "spring-boot-starter-webflux-test-4.1.1-javadoc.jar",
+          "url": "spring-boot-starter-webflux-test-4.1.1-javadoc.jar",
+          "size": 4762,
+          "sha512": "4e3df2b47562d2681e7fa9a5d2c18c7143395f8765d28844c02aa9a90ea5031b6c339cfa7d1afba4eb58f6b41d9dd46567079fc2cc1dff3974f4b28b07b9818d",
+          "sha256": "702ace83457bb7ee7f012715f1d44f695bf865aa7c5ded7d02bf608ec21a6999",
+          "sha1": "a937f827a86303c9e1e1cd5114b8ad874590b3d6",
+          "md5": "3dcefbc65dd7d053b0ef189ad1d963ae"
+        }
+      ]
+    },
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "spring-boot-starter-webflux-test-4.1.1-sources.jar",
+          "url": "spring-boot-starter-webflux-test-4.1.1-sources.jar",
+          "size": 4762,
+          "sha512": "4e3df2b47562d2681e7fa9a5d2c18c7143395f8765d28844c02aa9a90ea5031b6c339cfa7d1afba4eb58f6b41d9dd46567079fc2cc1dff3974f4b28b07b9818d",
+          "sha256": "702ace83457bb7ee7f012715f1d44f695bf865aa7c5ded7d02bf608ec21a6999",
+          "sha1": "a937f827a86303c9e1e1cd5114b8ad874590b3d6",
+          "md5": "3dcefbc65dd7d053b0ef189ad1d963ae"
+        }
+      ]
+    }
+  ]
+}

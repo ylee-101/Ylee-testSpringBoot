@@ -14,8 +14,14 @@ java {
 	}
 }
 
+val offlineMavenOnly = providers.gradleProperty("offlineMavenOnly").map { it.toBoolean() }.getOrElse(false)
+
 repositories {
-	mavenCentral()
+	if (offlineMavenOnly) {
+		maven { url = uri("${rootDir}/offline-maven") }
+	} else {
+		mavenCentral()
+	}
 }
 
 dependencies {

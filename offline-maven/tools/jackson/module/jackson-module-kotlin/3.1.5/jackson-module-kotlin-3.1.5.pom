@@ -1,0 +1,299 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+   <!-- This module was also published with a richer model, Gradle metadata,  -->
+    <!-- which should be used instead. Do not delete the following line which  -->
+    <!-- is to indicate to Gradle or any Gradle module metadata file consumer  -->
+    <!-- that they should prefer consuming it instead. -->
+    <!-- do_not_remove: published-with-gradle-metadata -->
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>tools.jackson</groupId>
+        <artifactId>jackson-base</artifactId>
+        <version>3.1.5</version>
+    </parent>
+    <groupId>tools.jackson.module</groupId>
+    <artifactId>jackson-module-kotlin</artifactId>
+    <name>jackson-module-kotlin</name>
+    <version>3.1.5</version>
+    <packaging>jar</packaging>
+    <description>Add-on module for Jackson (https://github.com/FasterXML/jackson/) to support
+        Kotlin language, specifically introspection of method/constructor parameter names,
+        without having to add explicit property name annotation.
+    </description>
+    <developers>
+        <developer>
+            <id>jaysonminard</id>
+            <name>Jayson Minard</name>
+            <email>jayson.minard@gmail.com</email>
+            <roles>
+                <role>author</role>
+            </roles>
+        </developer>
+        <developer>
+            <id>spikhalski</id>
+            <name>Dmitry Spikhalskiy</name>
+        </developer>
+        <developer>
+            <id>dinomite</id>
+            <name>Drew Stephens</name>
+        </developer>
+        <developer>
+            <id>viartemev</id>
+            <name>Vyacheslav Artemyev</name>
+        </developer>
+        <developer>
+            <id>realyusufismail</id>
+            <name>Yusuf Arfan Ismail</name>
+        </developer>
+    </developers>
+    <url>https://github.com/FasterXML/jackson-module-kotlin</url>
+    <scm>
+        <connection>scm:git:git@github.com:FasterXML/jackson-module-kotlin.git</connection>
+        <developerConnection>scm:git:git@github.com:FasterXML/jackson-module-kotlin.git</developerConnection>
+        <url>https://github.com/FasterXML/jackson-module-kotlin</url>
+        <tag>jackson-module-kotlin-3.1.5</tag>
+    </scm>
+
+    <properties>
+        <version.kotlin>2.1.21</version.kotlin>
+
+        <!-- Generate PackageVersion.java into this directory. -->
+        <packageVersion.dir>tools/jackson/module/kotlin</packageVersion.dir>
+        <packageVersion.package>${project.groupId}.kotlin</packageVersion.package>
+
+        <!-- Configuration properties for the OSGi maven-bundle-plugin -->
+        <osgi.includeResource>src/main/resources/, META-INF=target/classes/META-INF</osgi.includeResource>
+        <osgi.import>
+            com.fasterxml.jackson.annotation.*
+            ,tools.jackson.*
+            ,kotlin.*
+            ,kotlin.reflect.*
+        </osgi.import>
+        <osgi.export>${project.groupId}.kotlin.*;version=${project.version}
+        </osgi.export>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>tools.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jetbrains</groupId>
+            <artifactId>annotations</artifactId>
+            <version>26.0.1</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-stdlib</artifactId>
+            <version>${version.kotlin}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-stdlib-jdk8</artifactId>
+            <version>${version.kotlin}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-reflect</artifactId>
+            <version>${version.kotlin}</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <!-- Test dependencies -->
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-test-junit5</artifactId>
+            <version>${version.kotlin}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>tools.jackson.dataformat</groupId>
+            <artifactId>jackson-dataformat-xml</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>tools.jackson.dataformat</groupId>
+            <artifactId>jackson-dataformat-csv</artifactId>
+            <scope>test</scope>
+        </dependency>
+	<!-- 06-Apr-2025, tatu: JSR-310 module merged in jackson-databind
+             for 3.0.0-rc3
+          -->
+        <!--
+        <dependency>
+            <groupId>tools.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+            <scope>test</scope>
+        </dependency>
+          -->
+    </dependencies>
+
+    <build>
+        <testSourceDirectory>${project.basedir}/src/test/kotlin</testSourceDirectory>
+        <plugins>
+            <plugin>
+                <groupId>org.jetbrains.kotlin</groupId>
+                <artifactId>kotlin-maven-plugin</artifactId>
+                <version>${version.kotlin}</version>
+
+                <!-- 27-Mar-2026, tatu: Apparently we do need this to avoid JVM 1.8 target -->
+                <configuration>
+                    <jvmTarget>${javac.target.version}</jvmTarget>
+                </configuration>
+
+                <executions>
+                    <execution>
+                        <id>compile</id>
+                        <phase>process-sources</phase>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                        <configuration>
+                            <sourceDirs>
+                                <source>${project.basedir}/target/generated-sources</source>
+                                <source>${project.basedir}/src/main/java</source>
+                                <source>${project.basedir}/src/main/kotlin</source>
+                            </sourceDirs>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>test-compile</id>
+                        <phase>process-test-sources</phase>
+                        <goals>
+                            <goal>test-compile</goal>
+                        </goals>
+                        <configuration>
+                            <sourceDirs>
+                                <source>${project.basedir}/src/test/java</source>
+                                <source>${project.basedir}/src/test/kotlin</source>
+                            </sourceDirs>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <includes>
+                        <!--
+                        This setting is necessary because the project includes tests that do not match the default run target class name.
+                        https://maven.apache.org/surefire/maven-surefire-plugin/examples/inclusion-exclusion.html#inclusions
+                        -->
+                        <include>tools.jackson.module.kotlin.**</include>
+                    </includes>
+                    <!-- 11-Apr-2025, tatu: Cannot make JPMS work here, no matter what.
+                            So... turn it off
+                      -->
+                    <useModulePath>false</useModulePath>
+                    <argLine>
+                        --add-opens tools.jackson.module.kotlin/tools.jackson.module.kotlin.test.github=kotlin.reflect
+                    </argLine>
+                </configuration>
+            </plugin>
+            <plugin>
+                <!-- Inherited from oss-base. Generate PackageVersion.java.-->
+                <groupId>com.google.code.maven-replacer-plugin</groupId>
+                <artifactId>replacer</artifactId>
+            </plugin>
+            <!-- 28-Apr-2025, tatu: SBOM generation [JSTEP-14] -->
+            <plugin>
+                <groupId>org.cyclonedx</groupId>
+                <artifactId>cyclonedx-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <inherited>true</inherited>
+                <configuration>
+                    <showDeprecation>true</showDeprecation>
+                    <showWarnings>true</showWarnings>
+                </configuration>
+            </plugin>
+
+            <!-- 05-Jul-2020, tatu: Add generation of Gradle Module Metadata -->
+            <plugin>
+                <groupId>org.gradlex</groupId>
+                <artifactId>gradle-module-metadata-maven-plugin</artifactId>
+            </plugin>
+
+            <plugin>
+                <groupId>com.github.siom79.japicmp</groupId>
+                <artifactId>japicmp-maven-plugin</artifactId>
+                <version>0.23.1</version>
+                <configuration>
+                    <oldVersion>
+                        <dependency>
+                            <groupId>tools.jackson.module</groupId>
+                            <artifactId>jackson-module-kotlin</artifactId>
+                            <version>3.0.4</version>
+                            <type>jar</type>
+                        </dependency>
+                    </oldVersion>
+                    <newVersion>
+                        <file>
+                            <path>${project.build.directory}/${project.artifactId}-${project.version}.jar</path>
+                        </file>
+                    </newVersion>
+                    <parameter>
+                        <breakBuildOnBinaryIncompatibleModifications>true</breakBuildOnBinaryIncompatibleModifications>
+                        <breakBuildOnSourceIncompatibleModifications>true</breakBuildOnSourceIncompatibleModifications>
+                        <excludes>
+                            <!-- Since it is not compatible with 2.x and the official release of 3.x is not yet available, compatibility checks have been disabled. -->
+                            <exclude>*</exclude>
+                        </excludes>
+                    </parameter>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>cmp</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- add kotlin sources for the maven-source-plugin (need this for mixed java/kotlin sources) -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>add-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>src/main/kotlin</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <!-- Alas, need to include snapshot reference since otherwise can not find
+         snapshot of parent... -->
+    <repositories>
+        <!-- 13-May-2025, tatu: and now moving to Central Portal -->
+        <repository>
+            <id>central-snapshots</id>
+            <name>Sonatype Central Portal (snapshots)</name>
+            <url>https://central.sonatype.com/repository/maven-snapshots</url>
+            <releases><enabled>false</enabled></releases>
+            <snapshots><enabled>true</enabled></snapshots>
+        </repository>
+    </repositories>
+</project>

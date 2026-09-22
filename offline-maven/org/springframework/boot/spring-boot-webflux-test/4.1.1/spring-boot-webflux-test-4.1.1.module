@@ -1,0 +1,146 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "org.springframework.boot",
+    "module": "spring-boot-webflux-test",
+    "version": "4.1.1",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.7.0"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 17,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "org.springframework.boot",
+          "module": "spring-boot-test-autoconfigure",
+          "version": {
+            "requires": "4.1.1"
+          }
+        },
+        {
+          "group": "org.springframework.boot",
+          "module": "spring-boot-webflux",
+          "version": {
+            "requires": "4.1.1"
+          }
+        },
+        {
+          "group": "org.springframework.boot",
+          "module": "spring-boot-webtestclient",
+          "version": {
+            "requires": "4.1.1"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "spring-boot-webflux-test-4.1.1.jar",
+          "url": "spring-boot-webflux-test-4.1.1.jar",
+          "size": 10832,
+          "sha512": "e54f2bfb73e5cc7f1f402b4a76034136fabaa191910e85db19dc9a8c4962c2a1b8efec4c1fe2e8ebbe7c3acc2d52646af8ab32f780e7703912d50c5dd3d0489d",
+          "sha256": "7bba83a4d3750660ad4aa5f8498bf2782dffa40b2667ad04c4c10cf1920cdcae",
+          "sha1": "28137d23db72cc6dffee2509c6a704a3a36edcf4",
+          "md5": "ad8ca1eba782a739052fab07a3d5c08c"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 17,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "org.springframework.boot",
+          "module": "spring-boot-test-autoconfigure",
+          "version": {
+            "requires": "4.1.1"
+          }
+        },
+        {
+          "group": "org.springframework.boot",
+          "module": "spring-boot-webflux",
+          "version": {
+            "requires": "4.1.1"
+          }
+        },
+        {
+          "group": "org.springframework.boot",
+          "module": "spring-boot-webtestclient",
+          "version": {
+            "requires": "4.1.1"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "spring-boot-webflux-test-4.1.1.jar",
+          "url": "spring-boot-webflux-test-4.1.1.jar",
+          "size": 10832,
+          "sha512": "e54f2bfb73e5cc7f1f402b4a76034136fabaa191910e85db19dc9a8c4962c2a1b8efec4c1fe2e8ebbe7c3acc2d52646af8ab32f780e7703912d50c5dd3d0489d",
+          "sha256": "7bba83a4d3750660ad4aa5f8498bf2782dffa40b2667ad04c4c10cf1920cdcae",
+          "sha1": "28137d23db72cc6dffee2509c6a704a3a36edcf4",
+          "md5": "ad8ca1eba782a739052fab07a3d5c08c"
+        }
+      ]
+    },
+    {
+      "name": "javadocElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "javadoc",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "spring-boot-webflux-test-4.1.1-javadoc.jar",
+          "url": "spring-boot-webflux-test-4.1.1-javadoc.jar",
+          "size": 110618,
+          "sha512": "0707a73f429ebe8be8e99de5848d1ee296f4fec8c2371f436e29e79370fca237b7623b5c43983daf2b3a5fb8e3fe5e5f4c20cbbeb0ef32f91eea00d45c86b843",
+          "sha256": "9216b92c0e2f16926e1372c39854f8f8a405b8acc77f25385a51c325a9f2dfa4",
+          "sha1": "5ab66dcda9e8b8e35f8652b9c032691ba3b94954",
+          "md5": "fa3e3f7147282d645ac39bae3bb5fc74"
+        }
+      ]
+    },
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "spring-boot-webflux-test-4.1.1-sources.jar",
+          "url": "spring-boot-webflux-test-4.1.1-sources.jar",
+          "size": 12550,
+          "sha512": "a070cb5070b635631063c1b54a68fb3bec38d3745c62de79ed5c185a9770e0fea0c175d73fd5e3ca72e6fde491813cfe3ca841635fd83febd5323b6b9e4cdec1",
+          "sha256": "b0ab8043d0fc5e42b06e5860e9907c71613791ebcbb541d317a01ee3c3694dd3",
+          "sha1": "478b708d25a96ec69bf6db3183bc9b5714993c4d",
+          "md5": "a2e135827f589695b99639e6030ce1ce"
+        }
+      ]
+    }
+  ]
+}

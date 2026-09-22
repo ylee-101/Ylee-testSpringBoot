@@ -1,0 +1,159 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../kotlin-test/2.3.21/kotlin-test-2.3.21.module",
+    "group": "org.jetbrains.kotlin",
+    "module": "kotlin-test",
+    "version": "2.3.21",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.14"
+    }
+  },
+  "variants": [
+    {
+      "name": "jvmJUnit5ApiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-test",
+          "version": {
+            "requires": "2.3.21"
+          }
+        },
+        {
+          "group": "org.junit.jupiter",
+          "module": "junit-jupiter-api",
+          "version": {
+            "requires": "5.10.1"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "kotlin-test-junit5-2.3.21.jar",
+          "url": "kotlin-test-junit5-2.3.21.jar",
+          "size": 5103,
+          "sha512": "535498a31646f390ab17c32d3494400321f6ca48685044b1bab330f51809b8e5c312a08e94a3a13475b4f9b863d9de0c5452cfced248110221715e4e116e497d",
+          "sha256": "24350f53fe1be3b7fe0e8fcd7e1b777eb0b8fa16af720617fe7e87d0a77c2797",
+          "sha1": "8275a97df98d6144f26cc5befa02a54e0ce2c6f9",
+          "md5": "16e40895546bc55898e567c9aef3be3b"
+        }
+      ],
+      "capabilities": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "name": "kotlin-test-junit5",
+          "version": "2.3.21"
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "name": "kotlin-test-framework-impl",
+          "version": "2.3.21"
+        }
+      ]
+    },
+    {
+      "name": "jvmJUnit5RuntimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-test",
+          "version": {
+            "requires": "2.3.21"
+          }
+        },
+        {
+          "group": "org.junit.jupiter",
+          "module": "junit-jupiter-engine",
+          "version": {
+            "requires": "5.10.1"
+          }
+        },
+        {
+          "group": "org.junit.platform",
+          "module": "junit-platform-launcher",
+          "version": {
+            "requires": "1.10.1"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "kotlin-test-junit5-2.3.21.jar",
+          "url": "kotlin-test-junit5-2.3.21.jar",
+          "size": 5103,
+          "sha512": "535498a31646f390ab17c32d3494400321f6ca48685044b1bab330f51809b8e5c312a08e94a3a13475b4f9b863d9de0c5452cfced248110221715e4e116e497d",
+          "sha256": "24350f53fe1be3b7fe0e8fcd7e1b777eb0b8fa16af720617fe7e87d0a77c2797",
+          "sha1": "8275a97df98d6144f26cc5befa02a54e0ce2c6f9",
+          "md5": "16e40895546bc55898e567c9aef3be3b"
+        }
+      ],
+      "capabilities": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "name": "kotlin-test-junit5",
+          "version": "2.3.21"
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "name": "kotlin-test-framework-impl",
+          "version": "2.3.21"
+        }
+      ]
+    },
+    {
+      "name": "jvmJUnit5SourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "files": [
+        {
+          "name": "kotlin-test-junit5-2.3.21-sources.jar",
+          "url": "kotlin-test-junit5-2.3.21-sources.jar",
+          "size": 3258,
+          "sha512": "170081963c1a7567bb5cf7deeb7d1e5e8fe215bf56b3b836af3921d2095fa814d30b0fac79ac05cbd70827ea6a929f58330ea0583a7f3f5dc54d87ee87a554c3",
+          "sha256": "5e0d4688277a3f859be086b874601b45f54b30b5b045800138b54e9418bdc95b",
+          "sha1": "02efccc5bddf40f42d3a2ad787430e2e419821ad",
+          "md5": "36066f5beb993b645048593196212107"
+        }
+      ],
+      "capabilities": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "name": "kotlin-test-junit5",
+          "version": "2.3.21"
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "name": "kotlin-test-framework-impl",
+          "version": "2.3.21"
+        }
+      ]
+    }
+  ]
+}
