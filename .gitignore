@@ -41,3 +41,5 @@ out/
 
 ### Offline build ###
 .gradle-offline-home/
+/offline-tools/gradle-dist/gradle-9.7.1-bin.zip
+*.reassembling

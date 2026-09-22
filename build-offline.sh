@@ -18,28 +18,15 @@ mkdir -p "$GRADLE_USER_HOME"
 GRADLE_DIST_NAME="gradle-9.7.1-bin"
 GRADLE_DIST_HASH="1w1c7tv4s851m17nbqdsro2tv" # deterministic hash of the distributionUrl, see gradle/wrapper/gradle-wrapper.properties
 DIST_DIR="$GRADLE_USER_HOME/wrapper/dists/$GRADLE_DIST_NAME/$GRADLE_DIST_HASH"
-SPLIT_DIR="$PROJECT_ROOT/offline-tools/gradle-dist"
-RECONSTRUCTED_ZIP="$GRADLE_USER_HOME/.reconstructed-$GRADLE_DIST_NAME.zip"
+RECONSTRUCTED_ZIP="$PROJECT_ROOT/offline-tools/gradle-dist/$GRADLE_DIST_NAME.zip"
 
 # --- 1. Make the Gradle distribution available locally, without a network request ---
 if [ ! -d "$DIST_DIR/gradle-9.7.1" ]; then
-	echo "Reassembling $GRADLE_DIST_NAME.zip from split parts..."
-	cat "$SPLIT_DIR"/${GRADLE_DIST_NAME}.zip.part-* > "$RECONSTRUCTED_ZIP"
-
-	EXPECTED_SHA256="$(cat "$SPLIT_DIR/${GRADLE_DIST_NAME}.zip.sha256")"
-	ACTUAL_SHA256="$(shasum -a 256 "$RECONSTRUCTED_ZIP" | awk '{print $1}')"
-	if [ "$EXPECTED_SHA256" != "$ACTUAL_SHA256" ]; then
-		echo "ERROR: reconstructed $GRADLE_DIST_NAME.zip checksum mismatch." >&2
-		echo "  expected: $EXPECTED_SHA256" >&2
-		echo "  actual:   $ACTUAL_SHA256" >&2
-		rm -f "$RECONSTRUCTED_ZIP"
-		exit 1
-	fi
+	"$PROJECT_ROOT/offline-tools/reassemble.sh"
 
 	mkdir -p "$DIST_DIR"
 	unzip -q "$RECONSTRUCTED_ZIP" -d "$DIST_DIR"
 	touch "$DIST_DIR/${GRADLE_DIST_NAME}.zip.ok" "$DIST_DIR/${GRADLE_DIST_NAME}.zip.lck"
-	rm -f "$RECONSTRUCTED_ZIP"
 fi
 
 # --- 2. Validate a JDK 21 is present (required, not bundled) ---
